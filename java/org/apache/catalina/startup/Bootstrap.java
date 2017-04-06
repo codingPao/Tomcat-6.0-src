@@ -203,9 +203,9 @@ public final class Bootstrap {
     {
 
         // Set Catalina path
-        //设置catalina.home的系统变量
+        //设置catalina.home的系统属性值。先从VM启动参数中获得
         setCatalinaHome();
-        //设置catalina.base的系统变量
+        //设置catalina.base的系统属性值。先从VM启动参数中获得 获取不到则用catalina.home的系统属性值作为catalina.base的系统属性值
         setCatalinaBase();
 
         initClassLoaders();
