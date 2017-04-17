@@ -86,7 +86,8 @@ public final class Bootstrap {
 
     // -------------------------------------------------------- Private Methods
 
-
+    //初始化commonLoader catalinaLoader sharedLoader
+    //server.loader与shared.loader未配置的情况下catalinaLoader与sharedLoader等于commonLoader
     private void initClassLoaders() {
         try {
             commonLoader = createClassLoader("common", null);
@@ -107,7 +108,7 @@ public final class Bootstrap {
         throws Exception {
         //读取VM启动时配置的-Dcatalina.config的路径下的配置文件，如果未配置该参数，则读取
         //"catalina.base"路径下的conf/catalina.properties配置文件
-        String value = CatalinaProperties.getProperty(name + ".loader");
+         String value = CatalinaProperties.getProperty(name + ".loader");
         if ((value == null) || (value.equals("")))
             return parent;
         //jar仓库地址
@@ -207,7 +208,7 @@ public final class Bootstrap {
         setCatalinaHome();
         //设置catalina.base的系统属性值。先从VM启动参数中获得 获取不到则用catalina.home的系统属性值作为catalina.base的系统属性值
         setCatalinaBase();
-
+        //初始化commonLoader catalinaLoader sharedLoader
         initClassLoaders();
 
         Thread.currentThread().setContextClassLoader(catalinaLoader);
