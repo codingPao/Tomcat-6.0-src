@@ -87,7 +87,8 @@ public final class Bootstrap {
     // -------------------------------------------------------- Private Methods
 
     //初始化commonLoader catalinaLoader sharedLoader
-    //server.loader与shared.loader未配置的情况下catalinaLoader与sharedLoader等于commonLoader
+    //如果properties中未配置server.loader与shared.loader，
+    // catalinaLoader与sharedLoader等于commonLoader
     private void initClassLoaders() {
         try {
             commonLoader = createClassLoader("common", null);
@@ -106,8 +107,7 @@ public final class Bootstrap {
 
     private ClassLoader createClassLoader(String name, ClassLoader parent)
         throws Exception {
-        //读取VM启动时配置的-Dcatalina.config的路径下的配置文件，如果未配置该参数，则读取
-        //"catalina.base"路径下的conf/catalina.properties配置文件
+        //读取catalina.properties配置文件
          String value = CatalinaProperties.getProperty(name + ".loader");
         if ((value == null) || (value.equals("")))
             return parent;
@@ -178,6 +178,7 @@ public final class Bootstrap {
             (locations, types, parent);
 
         // Retrieving MBean server
+        // 没看懂
         MBeanServer mBeanServer = null;
         if (MBeanServerFactory.findMBeanServer(null).size() > 0) {
             mBeanServer =
@@ -187,6 +188,7 @@ public final class Bootstrap {
         }
 
         // Register the server classloader
+        // 没看懂
         ObjectName objectName =
             new ObjectName("Catalina:type=ServerClassLoader,name=" + name);
         mBeanServer.registerMBean(classLoader, objectName);

@@ -80,6 +80,9 @@ public class CatalinaProperties {
     /**
      * Load properties.
      */
+    //读取VM启动时配置的-Dcatalina.config的路径下的配置文件，
+    //如果未配置该参数，则读取"catalina.base"路径下的conf/catalina.properties配置文件
+    //如果找不到该文件 则到本类的目录下读取catalina.properties
     private static void loadProperties() {
 
         InputStream is = null;
