@@ -75,6 +75,7 @@ public final class Bootstrap {
 
     /**
      * Daemon reference.
+     * org.apache.catalina.startup.Catalina
      */
     private Object catalinaDaemon = null;
 
@@ -226,6 +227,7 @@ public final class Bootstrap {
         Object startupInstance = startupClass.newInstance();
 
         // Set the shared extensions class loader
+        //实例化Catalina对象 并且调用setParentClassLoader方法，传入sharedLoader
         if (log.isDebugEnabled())
             log.debug("Setting startup class properties");
         String methodName = "setParentClassLoader";
