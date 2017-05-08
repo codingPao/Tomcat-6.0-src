@@ -141,7 +141,7 @@ public class Catalina extends Embedded {
      * @param parentClassLoader The shared extensions class loader.
      */
     public void setParentClassLoader(ClassLoader parentClassLoader) {
-
+        //parentClassLoader 为 sharedLoader
         this.parentClassLoader = parentClassLoader;
 
     }
